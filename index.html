@@ -9,12 +9,11 @@
 		<link rel="manifest" href="icons/site.webmanifest">
 		<link rel="mask-icon" href="icons/safari-pinned-tab.svg" color="#5bbad5">
 		<link rel="shortcut icon" href="icons/favicon.ico">
-		<meta name="msapplication-TileColor" content="#da532c">
-		<meta name="msapplication-config" content="icons/browserconfig.xml">
 		<meta name="theme-color" content="#ffffff">
 
 		<link type="text/css" rel="stylesheet" href="https://unpkg.com/bootstrap/dist/css/bootstrap.min.css"/>
 		<link type="text/css" rel="stylesheet" href="https://unpkg.com/bootstrap-vue@latest/dist/bootstrap-vue.css"/>
+
 	</head>
 	<body>
 	
@@ -27,7 +26,7 @@
 
 				  <b-navbar-toggle target="nav_collapse"></b-navbar-toggle>
 				
-				  <b-navbar-brand href="#"><img src="icons/favicon-32x32.png" class="d-inline-block align-top" alt="BV"> SoccerBook</b-navbar-brand>
+				  <b-navbar-brand href="#" v-on:click="navigate('listView')"><img src="icons/favicon-32x32.png" class="d-inline-block align-top" alt="BV"> SoccerBook</b-navbar-brand>
 				
 				  <b-collapse is-nav id="nav_collapse">
 				
@@ -59,7 +58,7 @@
 		
     
     
-				 <b-form @submit="onSubmit" v-if="navigation.formView">
+				 <b-form @submit="onSavePlayer" v-if="navigation.formView">
 			      <b-form-group id=""
 			                    label="First Name:"
 			                    label-for="firstName">
@@ -90,7 +89,7 @@
 			                      placeholder="Enter img URL">
 			        </b-form-input>
 			      </b-form-group>
-			    
+			       <b-button  v-on:click="navigate('listView')">Cancel</b-button>
 			      <b-button type="submit" variant="primary">Save</b-button>
 			   
 			    </b-form>
@@ -128,17 +127,11 @@
 				        lastname: '',
 				        image: ''
 				      },
-				      foods: [
-				        { text: 'Select one', value: null },
-				        'Neymar', 'Ronaldo', 'Messi', 'Dybala', 'Bale', 'Modriç', 'Pogba', 'De Gea', 'Neuer',
-				        , 'Boateng', 'Ramos', 'Griezmann', 'Kante', 'Lewandowski', 'Hazard', 'Suarez', 'Kroos'
-				        , 'Higuaìn', 'Agüero', 'De Bruyne ', 'Buffon', 'Sànchez', 'Chiellini', 'Courtois', 'Aubameyang', 'Hummels'
-				      ],
 				  navigation : { formView : false, listView : true}
 
 			  },
 			  methods: {
-				    onSubmit (evt) {
+				     onSavePlayer (evt) {
 				      evt.preventDefault();
 				      alert(JSON.stringify(this.form));
 				    },
